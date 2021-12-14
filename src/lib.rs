@@ -2,6 +2,7 @@ use proc_macro::{TokenStream, TokenTree};
 
 fn get_env_name(item: TokenStream) -> String {
     match item.into_iter().collect::<Vec<_>>().remove(0) {
+        // TODO: implement this function without "snailquote"
         TokenTree::Literal(s) => snailquote::unescape(&s.to_string()).unwrap(),
         tt => panic!("The first argument should be string literal, but {:}", tt),
     }
